@@ -1,0 +1,9 @@
+#!/bin/bash
+set -uexo pipefail
+
+find /usr/lib/modules/*
+rm -rf /usr/lib/modules/*/vmlinuz
+rm -rf /usr/lib/modules/*/dtb
+
+# ??? Where is this coming from?!
+rm -rf /boot/fedora
