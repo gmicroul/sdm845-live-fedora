@@ -1,7 +1,10 @@
 #!/bin/bash
 set -uexo pipefail
 
-find /usr/lib/modules/*
+# Yeet firstboot service entirely, otherwise systemd.firstboot=false needs
+# to be added to kernel commandline.
+rm /usr/lib/systemd/system/systemd-firstboot.service
+
 rm -rf /usr/lib/modules/*/vmlinuz
 rm -rf /usr/lib/modules/*/dtb
 
