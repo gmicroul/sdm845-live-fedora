@@ -1,0 +1,14 @@
+[Unit]
+Description=USB networking gadget
+After=modprobe@usbfunc:ncm.service modprobe@libcomposite.service
+Wants=modprobe@usbfunc:ncm.service modprobe@libcomposite.service
+DefaultDependencies=no
+
+[Service]
+RuntimeDirectory=usb-network
+ExecStart=/usr/bin/usb-network-start
+RemainAfterExit=true
+Type=oneshot
+
+[Install]
+WantedBy=usb-gadget.target
