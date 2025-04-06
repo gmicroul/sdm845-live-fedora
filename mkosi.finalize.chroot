@@ -10,3 +10,9 @@ rm -rf /usr/lib/modules/*/dtb
 
 # ??? Where is this coming from?!
 rm -rf /boot/fedora
+
+mkdir -p /usr/lib/firmware/updates/
+cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/postmarketos/* /usr/lib/firmware/updates/
+cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/qcom /usr/lib/firmware/
+cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/qca /usr/lib/firmware/
+rm -rf /usr/lib/firmware/qcom/sdm845/oneplus6/modem_pr/
