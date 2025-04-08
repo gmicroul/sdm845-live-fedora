@@ -1,0 +1,10 @@
+[Unit]
+After=livefs-nbd.service
+Requires=livefs-nbd.service
+After=modprobe@erofs.service
+Requires=modprobe@erofs.service
+
+[Mount]
+What=/dev/nbd0
+Where=/livefs
+Type=erofs
