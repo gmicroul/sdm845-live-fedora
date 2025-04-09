@@ -2,12 +2,12 @@
 # refuses to work with rescue.target
 
 [Unit]
-BindsTo=sys-devices-virtual-tty-ttyGS0.device
-After=sys-devices-virtual-tty-ttyGS0.device
 DefaultDependencies=no
 
 [Service]
-ExecStart=-agetty -o '-f -p -- \\u' --autologin root --keep-baud 115200,57600,38400,9600 - $TERM
+# https://connolly.tech/posts/2024_04_15-broken-connections/
+ExecStartPre=-bash -c 'echo " " > /dev/ttyGS0; read -r < /dev/ttyGS0'
+ExecStart=-agetty --autologin root 115200 - $TERM
 Type=idle
 Restart=always
 UtmpIdentifier=ttyGS0
