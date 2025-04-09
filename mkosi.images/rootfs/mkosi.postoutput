@@ -1,0 +1,22 @@
+#!/bin/bash
+set -uexo pipefail
+
+[[ -f $OUTPUTDIR/rootfs.ero ]] && exit
+
+compress=
+
+if [[ "${PROFILES:-}" == *"erofs-lzma"* ]]; then
+    compress=-zlzma
+fi
+if [[ "${PROFILES:-}" == *"erofs-zstd"* ]]; then
+    compress=-zzstd
+fi
+if [[ "${PROFILES:-}" == *"erofs-lz4"* ]]; then
+    compress=-zlz4
+fi
+
+time mkfs.erofs -Eall-fragments,fragdedupe=inode -C 1048576 \
+    $compress \
+    $OUTPUTDIR/rootfs.ero $OUTPUTDIR/rootfs/
+
+du -hs $OUTPUTDIR/rootfs.ero
