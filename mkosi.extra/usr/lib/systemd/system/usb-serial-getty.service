@@ -1,0 +1,20 @@
+# the standard serial-getty@.service is a bit too overcomplicated and
+# refuses to work with rescue.target
+
+[Unit]
+BindsTo=sys-devices-virtual-tty-ttyGS0.device
+After=sys-devices-virtual-tty-ttyGS0.device
+DefaultDependencies=no
+
+[Service]
+ExecStart=-agetty -o '-f -p -- \\u' --autologin root --keep-baud 115200,57600,38400,9600 - $TERM
+Type=idle
+Restart=always
+UtmpIdentifier=ttyGS0
+StandardInput=tty
+StandardOutput=tty
+TTYPath=/dev/ttyGS0
+TTYReset=yes
+TTYVHangup=yes
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
