@@ -14,3 +14,7 @@ fi
 
 # we expect u-boot to provide us the DTB
 rm -r /usr/lib/modules/*/dtb
+
+groupadd -g 1000 user && \
+    useradd -g 1000 -G wheel -m -u 1000 user && \
+    echo 'user:147147' | chpasswd
