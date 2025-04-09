@@ -1,1 +1,1 @@
-/usr/lib/systemd/system/usb-network.service
+/usr/lib/systemd/system/usb-gadget.service
