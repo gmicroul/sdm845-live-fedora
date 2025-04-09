@@ -5,6 +5,7 @@ DefaultDependencies=no
 SurviveFinalKillSignal=yes
 
 [Service]
-ExecStart=/usr/bin/nbd-client -p 172.16.42.2 9999
+ExecStart=/usr/bin/nbd-client -p -systemd-mark 172.16.42.2 9999 /dev/nbd0
+Restart=always
 Type=oneshot
 RemainAfterExit=yes

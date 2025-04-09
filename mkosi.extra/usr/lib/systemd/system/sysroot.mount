@@ -1,12 +1,12 @@
 [Unit]
 Before=initrd-root-fs.target
-After=livefs.mount
-Requires=livefs.mount
+After=run-rootfs.mount
+Requires=run-rootfs.mount
 After=modprobe@overlay.service
 Requires=modprobe@overlay.service
 
 [Mount]
-What=livefs
+What=live
 Where=/sysroot
-Options=lowerdir=/livefs,upperdir=/live/rw,workdir=/live/work
+Options=lowerdir=/run/rootfs,upperdir=/run/live-rw,workdir=/run/live-work
 Type=overlay
