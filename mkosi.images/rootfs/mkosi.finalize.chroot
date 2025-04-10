@@ -5,13 +5,6 @@ set -uexo pipefail
 # to be added to kernel commandline.
 rm /usr/lib/systemd/system/systemd-firstboot.service
 
-if [[ "${PROFILES:-}" == *"firmware"* ]]; then
-    mkdir -p /usr/lib/firmware/updates/
-    cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/postmarketos/* /usr/lib/firmware/updates/
-    cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/qcom /usr/lib/firmware/
-    cp -R $SRCDIR/firmware-oneplus-sdm845/lib/firmware/qca /usr/lib/firmware/
-fi
-
 # we expect u-boot to provide us the DTB
 rm -r /usr/lib/modules/*/dtb
 

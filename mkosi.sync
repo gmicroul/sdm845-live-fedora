@@ -1,5 +1,0 @@
-#!/bin/bash
-
-if [[ "${PROFILES:-}" == *"firmware"* ]]; then
-    git submodule update --init
-fi
