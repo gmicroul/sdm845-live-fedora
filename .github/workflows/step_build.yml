@@ -1,0 +1,27 @@
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install packages
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            erofs-utils \
+            systemd-ukify
+      - uses: systemd/mkosi@v25.3
+
+      - name: Build image
+        run: |
+          mkosi -f --profile phosh,erofs-lz4,rootfs-embedded
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdm845-live-fedora
+          path: ./mkosi.output/image.efi

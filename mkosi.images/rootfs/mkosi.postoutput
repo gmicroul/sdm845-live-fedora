@@ -15,7 +15,14 @@ if [[ "${PROFILES:-}" == *"erofs-lz4"* ]]; then
     compress=-zlz4
 fi
 
-time mkfs.erofs -Eall-fragments,fragdedupe=inode -C 1048576 \
+# fragdedupe not supported on ubuntu 24.04
+# extraopts="-Eall-fragments,fragdedupe=inode"
+extraopts="-Eall-fragments,dedupe,fragments"
+
+# the extra opts above are slow as molasses in GHA.
+extraopts=""
+
+time mkfs.erofs -C 1048576 $extraopts \
     $compress \
     $OUTPUTDIR/rootfs.ero $OUTPUTDIR/rootfs/
 
