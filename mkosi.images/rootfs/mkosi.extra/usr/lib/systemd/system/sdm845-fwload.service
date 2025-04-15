@@ -1,3 +1,6 @@
+[Unit]
+Before=rmtfs.service
+
 [Service]
 ExecStart=/usr/bin/sdm845-fwload extract_device_fw
 ExecStart=/usr/bin/sdm845-fwload extract_dsp_fw
