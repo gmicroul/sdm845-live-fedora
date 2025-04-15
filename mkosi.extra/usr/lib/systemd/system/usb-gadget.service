@@ -1,7 +1,8 @@
 [Unit]
 Description=USB gadget
 After=modprobe@usbfunc:acm.service modprobe@usbfunc:ncm.service modprobe@libcomposite.service sys-kernel-config.mount
-Wants=modprobe@usbfunc:acm.service modprobe@usbfunc:ncm.service modprobe@libcomposite.service sys-kernel-config.mount
+Requires=modprobe@usbfunc:acm.service modprobe@usbfunc:ncm.service modprobe@libcomposite.service sys-kernel-config.mount
+Before=serial-getty@ttyGS0.service
 DefaultDependencies=no
 SurviveFinalKillSignal=yes
 
