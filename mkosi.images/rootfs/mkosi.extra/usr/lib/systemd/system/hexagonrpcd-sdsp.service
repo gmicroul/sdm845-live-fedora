@@ -1,11 +1,11 @@
 [Unit]
 Description=Daemon to support Qualcomm Hexagon SDSP virtual filesystem
-After=sdm845-fwload.service
-Requires=sdm845-fwload.service
+After=sdm845-fwload.service tqftpserv.service
+Requires=sdm845-fwload.service tqftpserv.service
 ConditionPathExists=/dev/fastrpc-sdsp
 
 [Service]
-ExecStart=/usr/bin/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s -R /mnt/sdm-fwload/extract/usrshare/hexagonrpcd/hexagonrpcd-sdsp.conf
+ExecStart=/usr/bin/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s -R /mnt/sdm-fwload/extract/usrshare/qcom/sdm845/OnePlus/oneplus6
 Restart=always
 RestartSec=3
 User=fastrpc
