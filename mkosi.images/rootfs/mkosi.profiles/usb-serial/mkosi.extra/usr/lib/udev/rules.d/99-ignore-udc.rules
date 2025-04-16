@@ -1,0 +1,1 @@
+DRIVER=="dwc3", ENV{ID_MM_DEVICE_IGNORE}="1"
