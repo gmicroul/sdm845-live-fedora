@@ -5,6 +5,7 @@ Before=rmtfs.service
 ExecStart=/usr/bin/sdm845-fwload extract_device_fw
 ExecStart=/usr/bin/sdm845-fwload extract_dsp_fw
 ExecStart=bash -c 'echo -n /mnt/sdm-fwload/extract/libfirmware/ > /sys/module/firmware_class/parameters/path'
+ExecStart=modprobe ipa
 Type=oneshot
 RemainAfterExit=yes
 Restart=on-failure
