@@ -25,3 +25,14 @@ jobs:
         with:
           name: sdm845-live-fedora
           path: ./mkosi.output/image.efi
+
+      - name: Upload image to Release
+        uses: ncipollo/release-action@main
+        #if: steps.compile.outputs.status == 'success' && !cancelled()
+        with:
+          tag: sdm845-live-fedora_${{ env.COMPILE_STARTINGTIME }}
+          artifacts: ./mkosi.output/image.efi
+          allowUpdates: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            This is sdm845-live-fedora_${{ env.LINUX_GITURL }}
